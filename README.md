@@ -68,4 +68,12 @@ $ exit
 
 And all is done, run pgAdmin4 to set the server up `that's up to you, I know you got this`.
 
+### Snap apps Instalation.
+
+
+```bash
+$ sudo snap install --classic heroku
+$ sudo snap install postman
+```
+
 That's all for today folks. More updates will come soon.
