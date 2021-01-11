@@ -66,6 +66,6 @@ postgres=#\q
 $ exit
 ```
 
-And all is done, run pgAdmin4 to setup server `that's up to you`.
+And all is done, run pgAdmin4 to set the server up `that's up to you, I know you got this`.
 
 That's all for today folks. More updates will come soon.
