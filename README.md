@@ -205,7 +205,7 @@ $ sudo cp -- /home/${your_user}/.nvm/version/node/v10.22.1/bin/node node10221
 $ sudo nano /usr/lib/systemd/system/kibana.service
 ```
 
-Edit ExecStart=/usr/bin/node field to:
+Edit `ExecStart=/usr/bin/node` field to:
 
 ```bash
 ExecStart=/usr/bin/node10221
