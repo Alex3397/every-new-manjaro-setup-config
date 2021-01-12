@@ -1,13 +1,13 @@
 # Every new manjaro setup and config.
 Install and setup configuration for my own use, so that every time I boot a new manjaro distro seting up stuff go as fast and smooth as possible. It'll serve as way to store useful commands for downloading regularly used apps and their configurations.
 
-### Installation
+### Installation.
 
 ```bash
-$ sudo pacman -Sy postgresql pgadmin4 mariadb clementine code npm firefox intellij-idea-community-edition jre11-openjdk maven neofetch youtube-dl
+$ sudo pacman -Sy postgresql pgadmin4 mariadb clementine code npm firefox intellij-idea-community-edition jre11-openjdk maven neofetch youtube-dl elasticsearch kibana logstash
 ```
 
-### PostgreSQL Service setup
+### PostgreSQL Service setup.
 
 Sign up as postgres user, initiate database using system locale language, and nothing else.
 
@@ -54,7 +54,7 @@ jan 11 11:49:24 alexandre-systemproductname postgres[507]: 2021-01-11 11:49:24.2
 jan 11 11:49:24 alexandre-systemproductname systemd[1]: Started PostgreSQL database server.
 ```
 
-### Postgres User setup
+### Postgres User setup.
 
 Sign up as postgres user, enter PostgreSQL via terminal and ALTER USER password.
 
@@ -76,10 +76,156 @@ $ sudo snap install --classic heroku
 $ sudo snap install postman
 ```
 
-### Instaling python dependencies
+### Instaling python dependencies.
 
 ```bash
 $ pip3 install pandas psycopg2 xlrd openpyxl xlsxwriter sqlalchemy
 ```
+
+### Elasticsearch configuration
+
+Enable cross origin access.
+
+```bash
+$ sudo su
+$ echo 'http.cors.allow-origin: "/.*/"' >> /etc/elasticsearch/elasticsearch.yml 
+$ echo 'http.cors.enabled: true' >> /etc/elasticsearch/elasticsearch.yml
+```
+
+Making acessible on local network.
+
+`Still in super user mode`
+```bash
+$ echo 'network.bind_host: 0.0.0.0' >> /etc/elasticsearch/elasticsearch.yml
+$ echo 'node.master: true' >> /etc/elasticsearch/elasticsearch.yml
+$ echo 'node.data: true' >> /etc/elasticsearch/elasticsearch.yml
+$ echo 'transport.host: localhost' >> /etc/elasticsearch/elasticsearch.yml
+$ echo 'transport.tcp.port: 9300' >> /etc/elasticsearch/elasticsearch.yml
+$ exit
+```
+
+## Alocating JVM memory.
+`Procede with caution.`
+
+```bash
+nano /etc/elasticsearch/jvm.options
+```
+You need to edit the -Xms and -Xmx values, please consider how much RAM you hardware's got this may either crash your system or cause weird behavior.
+`Since my pc has 16Gb RAM install i'll assing 2Gbs`
+ 
+ ```bash
+-Xms2g
+-Xmx2g
+ ```
+ 
+Depending on your hardware you may want to enable elasticsearch so it starts at boot.
+`Since i'm not a RAM consuming freak I'll start elasticsearh kibana and logstash every time I need these tools.
+If you're using a proper serve to host these processes then go ahead and enable start on boot`
+
+```bash
+$ sudo systemctl start elasticsearch.service
+$ sudo systemctl enable elasticsearch.service
+```
+
+If an error occurs run:
+
+```bash
+$ journalctl -fu elastic.service
+```
+
+To get an insight on what's wrong, if there's nothing useful in it ask doctor google.
+
+### Configuring Kibana.
+
+Edit the main Kibana configuration file is located at `/etc/kibana/kibana.yml`. By default kibana does not specify a port or bind address. 
+
+```bash
+$ sudo nano /etc/kibana/kibana.yml
+```
+
+Uncomment these fields:
+```bash
+server.port: 5601
+server.host: "localhost"
+elasticsearch.hosts: ["http://localhost:9200"]
+```
+
+Start kibana.
+
+```bash
+$ sudo systemctl start kibana.service
+```
+
+Wait 3 seconds.
+
+Get kibana status.
+
+```bash
+$ systemctl status kibana.service
+```
+
+If every things ok. 
+# Good. You're blessed by the gods of computing, a demigod walking among stardust.
+
+For the rest of us, mere mortals, that doesn't run node v10.22.1.
+We gotta do the following.
+
+## What's the issue.
+
+Right now Kibana runs on node v10.22.1 and probably lesser versions `I haven't tested that nor I will`, until Kibana starts using node's newer versions this issue is going to repeat itself.
+
+## The solution.
+
+# Install nvm.
+
+```bash
+$ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.0/install.sh | bash
+$ export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+$ [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+```
+
+I know it looks weird, but it works.
+
+# Install node v10.22.1 using nvm.
+
+```bash
+$ nvm install v10.22.1
+```
+
+This installs node bin in `/home/${your_user}/.nvm/versions/node/v10.22.1/bin` .nvm hidden directory.
+
+# Move into `/usr/bin` and copy node v10.22.1 into it named differently.
+
+```bash
+$ sudo cp -- /home/${your_user}/.nvm/version/node/v10.22.1/bin/node node10221
+```
+
+# Setup kibana to initialized using node's older version.
+
+```bash
+$ sudo nano /usr/lib/systemd/system/kibana.service
+```
+
+Edit ExecStart=/usr/bin/node field to:
+
+```bash
+ExecStart=/usr/bin/node10221
+```
+
+Restart systemctl services and check status.
+
+```bash
+$ sudo systemctl daemon-reload
+$ sudo systemctl start kibana.service
+$ sudo systemctl status kibana.service
+```
+
+If every thing's ok. Thank god.
+Other wise you gotta find out what's causing the issue.
+Tip: use `$ journalctl -fu kibana.service` and google.
+
+After solving the issue go to `http://localhost:5601` to check it out.
+
+Later you might need to set kibana `server.host` to `0.0.0.0` or another IP address you need.
 
 That's all for today folks. More updates will come soon.
