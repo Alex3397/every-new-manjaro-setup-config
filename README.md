@@ -76,4 +76,10 @@ $ sudo snap install --classic heroku
 $ sudo snap install postman
 ```
 
+### Instaling python dependencies
+
+```bash
+$ pip3 install pandas psycopg2 xlrd openpyxl xlsxwriter sqlalchemy
+```
+
 That's all for today folks. More updates will come soon.
