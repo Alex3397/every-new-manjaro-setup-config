@@ -165,7 +165,7 @@ $ systemctl status kibana.service
 ```
 
 If every things ok. 
-# Good. You're blessed by the gods of computing, a demigod walking among stardust.
+You're blessed by the gods of computing, a demigod walking among stardust.
 
 For the rest of us, mere mortals, that doesn't run node v10.22.1.
 We gotta do the following.
