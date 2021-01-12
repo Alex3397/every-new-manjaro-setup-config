@@ -169,11 +169,11 @@ You're blessed by the gods of computing, a demigod walking among stardust.
 
 For the rest of us, mere mortals, that doesn't run node v10.22.1.Keep on reading.
 
-### What's the issue.
+## What's the issue.
 
 Right now Kibana runs on node v10.22.1 and probably lesser versions `I haven't tested that nor I will`, until Kibana starts using node's newer versions this issue is going to repeat itself.
 
-### The solution.
+## The solution.
 
 ### Install nvm.
 
