@@ -104,7 +104,7 @@ $ echo 'transport.tcp.port: 9300' >> /etc/elasticsearch/elasticsearch.yml
 $ exit
 ```
 
-## Alocating JVM memory.
+### Alocating JVM memory.
 `Procede with caution.`
 
 ```bash
@@ -169,13 +169,13 @@ You're blessed by the gods of computing, a demigod walking among stardust.
 
 For the rest of us, mere mortals, that doesn't run node v10.22.1.Keep on reading.
 
-# What's the issue.
+### What's the issue.
 
 Right now Kibana runs on node v10.22.1 and probably lesser versions `I haven't tested that nor I will`, until Kibana starts using node's newer versions this issue is going to repeat itself.
 
-# The solution.
+### The solution.
 
-# Install nvm.
+### Install nvm.
 
 ```bash
 $ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.0/install.sh | bash
@@ -185,7 +185,7 @@ $ [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
 I know it looks weird, but it works.
 
-# Install node v10.22.1 using nvm.
+### Install node v10.22.1 using nvm.
 
 ```bash
 $ nvm install v10.22.1
@@ -193,13 +193,13 @@ $ nvm install v10.22.1
 
 This installs node bin in `/home/${your_user}/.nvm/versions/node/v10.22.1/bin` .nvm hidden directory.
 
-# Move into `/usr/bin` and copy node v10.22.1 into it named differently.
+### Move into `/usr/bin` and copy node v10.22.1 into it named differently.
 
 ```bash
 $ sudo cp -- /home/${your_user}/.nvm/version/node/v10.22.1/bin/node node10221
 ```
 
-# Setup kibana to initialized using node's older version.
+### Setup kibana to initialized using node's older version.
 
 ```bash
 $ sudo nano /usr/lib/systemd/system/kibana.service
