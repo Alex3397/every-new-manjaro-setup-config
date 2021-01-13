@@ -462,7 +462,7 @@ http {
 }
 ```
 
-Make it like so:
+If you got a fresh install feel free to just erase everything in the config file and make it like so:
 
 ```bash
 #user html;
@@ -589,6 +589,17 @@ http {
 }
 ```
 
-Start nginx and check status. If you get any errors it is most likely to be due to incorrect configuration data in `/etc/nginx/nginx.conf`.
+Generate htpassword for basic reverse proxy authentication.
 
-That's all for today folks. More updates will come soon. The code must go on.
+```bash
+$ sudo htpasswd -c -b /etc/kibana/htpasswd.users username password
+```
+
+And all is done, start nginx and check status just to make sure everything is working fine. If you get any errors it is most likely to be due to incorrect configuration data in `/etc/nginx/nginx.conf`.
+
+```bash
+$ sudo systemctl start nginx.service
+$ sudo systemctl status nginx.service
+```
+
+That's all for today folks. More updates will come soon `since being a developer is not a static thing`. If you're from a different distro and managed to get this far, it may be a good idea for you to start your own guide to postself fresh boot setup. Thank you for reading this and `the code must go on`.
