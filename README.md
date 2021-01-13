@@ -111,22 +111,21 @@ $ exit
 nano /etc/elasticsearch/jvm.options
 ```
 You need to edit the -Xms and -Xmx values, please consider how much RAM you hardware's got this may either crash your system or cause weird behavior.
-`Since my pc has 16Gb RAM install i'll assing 2Gbs`
+Note: `-Xms set's up the minimum heap size while -Xmx set's up the maximum heap size. And according to elasticsearch's heap size documentation BOTH -Xms AND -Xmx to no more than 50% percent your system's physical RAM as it requires memory for more than just JVM heap. However I've taken upon myself to test how much RAM is needed to properly run elasticsearch alongside with kibana, logstash and nginx and find out what goes wrong when -Xms and -Xmx are different from oneanother. For now I'll start low:`
  
  ```bash
--Xms2g
--Xmx2g
+-Xms1g
+-Xmx1g
  ```
  
 Depending on your hardware you may want to enable elasticsearch so it starts at boot.
-
-`Since i'm not a RAM consuming freak I'll start elasticsearh kibana and logstash every time I need these tools.
-If you're using a proper serve to host these processes then go ahead and enable start on boot`
 
 ```bash
 $ sudo systemctl start elasticsearch.service
 $ sudo systemctl enable elasticsearch.service
 ```
+`Since I don't have server sitting in mmy desktop I'll only start elasticsearh kibana, logstash and nginx every time I need these tools.
+If you're using a proper serve to host these processes then go ahead and enable start on boot`
 
 If an error occurs run:
 
