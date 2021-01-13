@@ -602,4 +602,5 @@ $ sudo systemctl start nginx.service
 $ sudo systemctl status nginx.service
 ```
 
-That's all for today folks. More updates will come soon `since being a developer is not a static thing`. If you're from a different distro and managed to get this far, it may be a good idea for you to start your own guide to postself fresh boot setup. Thank you for reading this and `the code must go on`.
+That's all for today folks. More updates will come soon `since being a developer is not a static thing`. 
+If you're from a different distro and managed to get this far, it may be a good idea for you to start your own guide to postself fresh boot setup. Thank you for reading this and `the code must go on`.
