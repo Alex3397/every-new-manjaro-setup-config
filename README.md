@@ -591,4 +591,4 @@ http {
 
 Start nginx and check status. If you get any errors it is most likely to be due to incorrect configuration data in `/etc/nginx/nginx.conf`.
 
-That's all for today folks. More updates will come soon. Code on.
+That's all for today folks. More updates will come soon. The code must go on.
