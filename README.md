@@ -119,6 +119,7 @@ You need to edit the -Xms and -Xmx values, please consider how much RAM you hard
  ```
  
 Depending on your hardware you may want to enable elasticsearch so it starts at boot.
+
 `Since i'm not a RAM consuming freak I'll start elasticsearh kibana and logstash every time I need these tools.
 If you're using a proper serve to host these processes then go ahead and enable start on boot`
 
@@ -143,9 +144,9 @@ Edit the main Kibana configuration file is located at `/etc/kibana/kibana.yml`. 
 $ sudo nano /etc/kibana/kibana.yml
 ```
 
-Uncomment these fields:
+Uncomment these fields and set kibana `server.host` to `"0.0.0.0"` or another IP address you need.
 ```bash
-server.port: 5601
+server.port: "0.0.0.0"
 server.host: "localhost"
 elasticsearch.hosts: ["http://localhost:9200"]
 ```
@@ -219,12 +220,122 @@ $ sudo systemctl start kibana.service
 $ sudo systemctl status kibana.service
 ```
 
-If every thing's ok. Thank god.
-Other wise you gotta find out what's causing the issue.
-Tip: use `$ journalctl -fu kibana.service` and google.
+If every thing's ok, Thank god.
 
-After solving the issue go to `http://localhost:5601` to check it out.
+Other wise use `$ journalctl -fu kibana.service` and google.
 
-Later you might need to set kibana `server.host` to `0.0.0.0` or another IP address you need.
+### Configuring Logstash.
+
+Edit logstash config to allow logs in to the machine.
+
+```bash
+$ sudo nano /etc/logstash/conf.d/logstash-simple.conf
+```
+
+Add this:
+
+```bash
+input {
+  file {
+    path => "/var/log/faillog" 
+    start_position => beginning
+  }
+
+  # network syslog input
+  syslog {
+    host => "0.0.0.0" 
+    port => 514
+  }
+
+  beats {
+    port => 5044
+  }
+
+}
+
+output {
+  elasticsearch { host => localhost }
+}
+```
+
+Test service start.
+
+```bash
+$ systemctl start logstash.service
+```
+
+If start fails, this might be the issue:
+
+A fresh logstash install, at the moment I'm writing this, basic pacman install is broken. In order to solve this problem we once again have to edit the ELK.service files.
+
+Opening `logstash.service` file.
+
+```bash
+$ sudo nano /usr/lib/systemd/system/logstash.service
+```
+
+The original service file is like this:
+
+```bash
+[Unit]
+Description=Logstash
+Documentation=http://www.elastic.co
+After=elasticsearch.service
+
+[Service]
+Environment=LS_HOME=/var/lib/logstash
+Environment=LS_HEAP_SIZE="500m"
+Environment=LS_CONF_DIR=/etc/logstash/conf.d
+Environment=LS_LOG_DIR=/var/log/logstash
+Environment=LS_SETTINGS_DIR=/etc/logstash
+User=logstash
+Group=logstash
+ExecStart=/usr/share/logstash/bin/logstash -f $LS_CONF_DIR  --path.logs $LS_LOG_DIR --path.data $LS_HOME --path.settings $LS_SETTINGS_DIR
+StandardOutput=null
+StandardError=journal
+SuccessExitStatus=143
+LimitNOFILE=65535
+TimeoutStopSec=20
+LimitMEMLOCK=infinity
+
+[Install]
+WantedBy=multi-user.target
+```
+
+Take a look, try to identify the problem by yourself for a moment. If you can, `WOW` you're awesome. If you can't it's alright, took me a while to find what was wrong, and it's quite simple and also weird, realy.
+
+The error was in field:
+
+```bash
+ExecStart=/usr/share/logstash/bin/logstash -f $LS_CONF_DIR  --path.logs $LS_LOG_DIR --path.data $LS_HOME --path.settings $LS_SETTINGS_DIR
+```
+
+That is basically bash variable definition, it's used alot, and technically it is not wrong, that's why it's a weird issue, because when adding `{` and `}` to each variable it starts working. So set it like this:
+
+```bash
+ExecStart=/usr/share/logstash/bin/logstash -f ${LS_CONF_DIR}  --path.logs ${LS_LOG_DIR} --path.data ${LS_HOME} --path.settings ${LS_SETTINGS_DIR}
+```
+
+Alternatively it can bet set to:
+
+```bash
+ExecStart=/usr/share/logstash/bin/logstash -f /etc/logstash/conf.d  --path.logs /var/log/logstash --path.data /var/lib/logstash --path.settings /etc/logstash
+```
+
+It should does not matter which way you choose.
+
+After that, reload daemon and start logstash and get status.
+
+```bash
+$ sudo systemctl daemon-reload
+$ sudo systemctl start logstash.service
+$ sudo systemctl status logstash.service
+```
+
+If no error occurs, that's all you need to do. Otherwise, you know what you gotta do.
+
+### Configuring ngnix
+
+
 
 That's all for today folks. More updates will come soon.
