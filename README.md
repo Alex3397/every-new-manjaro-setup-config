@@ -7,6 +7,19 @@ Install and setup configuration for my own use, so that every time I boot a new 
 $ sudo pacman -Sy postgresql pgadmin4 mariadb clementine code npm firefox intellij-idea-community-edition jre11-openjdk maven neofetch youtube-dl elasticsearch kibana logstash nginx virt-manager qemu vde2 ebtables dnsmasq bridge-utils openbsd-netcat wine lutris steam-manjaro gsmartcontrols smartmontool xterm git snapd
 ```
 
+### Snap apps Instalation.
+
+```bash
+$ sudo snap install --classic heroku
+$ sudo snap install postman
+```
+
+### Instaling python dependencies.
+
+```bash
+$ pip3 install pandas psycopg2 xlrd openpyxl xlsxwriter sqlalchemy
+```
+
 ### PostgreSQL Service setup.
 
 Sign up as postgres user, initiate database using system locale language, and nothing else.
@@ -67,20 +80,6 @@ $ exit
 ```
 
 And all is done, run pgAdmin4 to set the server up `that's up to you, I know you got this`.
-
-### Snap apps Instalation.
-
-
-```bash
-$ sudo snap install --classic heroku
-$ sudo snap install postman
-```
-
-### Instaling python dependencies.
-
-```bash
-$ pip3 install pandas psycopg2 xlrd openpyxl xlsxwriter sqlalchemy
-```
 
 ### Elasticsearch configuration
 
@@ -164,10 +163,7 @@ Get kibana status.
 $ systemctl status kibana.service
 ```
 
-If every things ok. 
-You're blessed by the gods of computing, a demigod walking among stardust.
-
-For the rest of us, mere mortals, that doesn't run node v10.22.1.Keep on reading.
+If every thing is ok it means they've fixed it already. 
 
 ## What's the issue.
 
@@ -219,7 +215,7 @@ $ sudo systemctl start kibana.service
 $ sudo systemctl status kibana.service
 ```
 
-If every thing's ok, Thank god.
+If every thing's ok, move on.
 
 Other wise use `$ journalctl -fu kibana.service` and google.
 
@@ -265,7 +261,7 @@ $ systemctl start logstash.service
 
 If start fails, this might be the issue:
 
-A fresh logstash install, at the moment I'm writing this, basic pacman install is broken. In order to solve this problem we once again have to edit the ELK.service files.
+A fresh logstash install, at the moment I'm writing this, standart pacman install is broken. In order to solve this problem we once again have to edit the ELK.service files.
 
 Opening `logstash.service` file.
 
@@ -301,7 +297,7 @@ LimitMEMLOCK=infinity
 WantedBy=multi-user.target
 ```
 
-Take a look, try to identify the problem by yourself for a moment. If you can, `WOW` you're awesome. If you can't it's alright, took me a while to find what was wrong, and it's quite simple and also weird, realy.
+Take a look, try to identify the problem by yourself for a moment. If you can, great, if not it's alright, it's quite a simple and weird error, realy.
 
 The error was in field:
 
@@ -331,7 +327,7 @@ $ sudo systemctl start logstash.service
 $ sudo systemctl status logstash.service
 ```
 
-If no error occurs, that's all you need to do. Otherwise, you know what you gotta do.
+If no error occurs, that's all you need to do.
 
 ### Configuring ngnix
 
@@ -461,7 +457,7 @@ http {
 }
 ```
 
-If you got a fresh install feel free to just erase everything in the config file and make it like so:
+If you got a fresh install feel free to just erase everything in the config file and make it like this:
 
 ```bash
 #user html;
