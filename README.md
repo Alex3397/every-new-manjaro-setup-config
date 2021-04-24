@@ -4,7 +4,7 @@ Install and setup configuration for my own use, so that every time I boot a new 
 ### Installation.
 
 ```bash
-$ sudo pacman -Sy postgresql pgadmin4 mariadb clementine code npm firefox intellij-idea-community-edition jre11-openjdk maven neofetch youtube-dl elasticsearch kibana logstash nginx virt-manager qemu vde2 ebtables dnsmasq bridge-utils openbsd-netcat wine lutris steam-manjaro gsmartcontrols smartmontool xterm git snapd
+$ sudo pacman -Sy postgresql pgadmin4 mysql mariadb clementine code npm firefox intellij-idea-community-edition jre11-openjdk maven neofetch youtube-dl elasticsearch kibana logstash nginx virt-manager qemu vde2 ebtables dnsmasq bridge-utils openbsd-netcat wine lutris steam-manjaro gsmartcontrols smartmontool xterm git snapd
 ```
 
 ### Snap apps Instalation.
@@ -597,6 +597,22 @@ $ sudo systemctl start nginx.service
 $ sudo systemctl status nginx.service
 ```
 
-That's all for today folks. More updates will come soon `since being a developer is not a static thing`. 
+##MySQL Configuration
 
-If you're from a different distro and managed to get this far, it may be a good idea for you to start your own guide to postself fresh boot setup. Thank you for reading this and `the code must go on`.
+MySQL might not work straight away so first thing you should do is check service status with:
+
+```bash
+$ sudo systemctl status mariadb.service
+```
+
+if it fails try:
+
+```bash
+$ sudo mysql_install_db --user=mysql --basedir=/usr --datadir=/var/lib/mysql
+```
+
+if results shows ok proceed with the installation:
+
+```bash
+$ sudo systemctl start mysqld && sudo mysql_secure_installation
+```
