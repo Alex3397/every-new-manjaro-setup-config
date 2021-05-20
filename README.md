@@ -79,7 +79,7 @@ postgres=#\q
 $ exit
 ```
 
-And all is done, run pgAdmin4 to set the server up `that's up to you, I know you got this`.
+And all is done, run pgAdmin4 to set the server up.
 
 ### Elasticsearch configuration
 
