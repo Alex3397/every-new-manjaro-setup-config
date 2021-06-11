@@ -17,7 +17,22 @@ $ sudo snap install postman
 ### Instaling python dependencies.
 
 ```bash
-$ pip3 install pandas psycopg2 xlrd openpyxl xlsxwriter sqlalchemy
+$ pip3 install pandas psycopg2 xlrd openpyxl xlsxwriter sqlalchemy googleapis-common-protos google-auth-oauthlib google-auth-httplib2 google-ads google-api-core google-api-python-client google-auth
+```
+
+### Add Permanent Enviroment Variables.
+
+Touch .sh file then open and edit:
+
+```bash
+$ sudo touch /etc/profile.d/example.sh
+$ sudo nano /etc/profile.d/example.sh
+```
+
+Template:
+
+```bash
+export VARIABLE=var_content
 ```
 
 ### PostgreSQL Service setup.
