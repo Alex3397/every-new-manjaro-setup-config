@@ -4,7 +4,7 @@ Install and setup configuration for my own use, so that every time I boot a new 
 ### Installation.
 
 ```bash
-$ sudo pacman -Sy postgresql pgadmin4 apache mysql mariadb clementine code npm firefox intellij-idea-community-edition jre11-openjdk maven neofetch youtube-dl elasticsearch kibana logstash nginx virt-manager qemu vde2 ebtables dnsmasq bridge-utils openbsd-netcat wine lutris steam-manjaro gsmartcontrols smartmontool xterm git snapd tmux ncdu bashtop ranger
+$ sudo pacman -Sy postgresql pgadmin4 apache mysql mariadb lollypop code npm firefox intellij-idea-community-edition jre11-openjdk maven neofetch youtube-dl elasticsearch kibana logstash nginx virt-manager qemu vde2 ebtables dnsmasq bridge-utils openbsd-netcat wine lutris steam-manjaro gsmartcontrols smartmontool xterm git snapd tmux ncdu bashtop ranger
 ```
 
 ### Snap apps Instalation.
