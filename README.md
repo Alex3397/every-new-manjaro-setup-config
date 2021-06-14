@@ -10,8 +10,7 @@ $ sudo pacman -Sy postgresql pgadmin4 apache mysql mariadb lollypop code npm fir
 ### Snap apps Instalation.
 
 ```bash
-$ sudo snap install --classic heroku
-$ sudo snap install postman
+$ sudo snap install --classic heroku && sudo snap install postman
 ```
 
 ### Instaling python dependencies.
