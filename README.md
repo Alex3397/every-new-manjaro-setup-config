@@ -34,6 +34,18 @@ Template:
 export VARIABLE=var_content
 ```
 
+Or 
+
+```bash
+$ sudo nano /etc/enviroment
+```
+
+and add:
+
+```bash
+VARIABLE=var_content
+```
+
 ### PostgreSQL Service setup.
 
 Sign up as postgres user, initiate database using system locale language, and nothing else.
@@ -94,6 +106,20 @@ $ exit
 ```
 
 And all is done, run pgAdmin4 to set the server up.
+
+### If PgAdmin4 fails
+
+Install pgAdmin4 via pip, if it doesn't install via `.whl`.
+
+```bash
+$ sudo mkdir /var/lib/pgadmin
+$ sudo mkdir /var/log/pgadmin
+$ sudo chown $USER /var/lib/pgadmin
+$ sudo chown $USER /var/log/pgadmin
+$ pip3 install pgadmin4
+```
+
+And run `$ pgadmin4` on terminal to finish setting up and then create a desktop shortcut.
 
 ### Elasticsearch configuration
 
