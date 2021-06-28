@@ -16,7 +16,7 @@ $ sudo snap install --classic heroku && sudo snap install postman
 ### Instaling python dependencies.
 
 ```bash
-$ pip3 install pandas psycopg2 xlrd openpyxl xlsxwriter sqlalchemy decouple googleapis-common-protos google-auth-oauthlib google-auth-httplib2 google-ads google-api-core google-api-python-client google-auth
+$ pip3 install pandas psycopg2 xlrd openpyxl xlsxwriter sqlalchemy python-decouple googleapis-common-protos google-auth-oauthlib google-auth-httplib2 google-ads google-api-core google-api-python-client google-auth
 ```
 
 ### Add Permanent Enviroment Variables.
