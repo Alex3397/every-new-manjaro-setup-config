@@ -4,7 +4,7 @@ Install and setup configuration for my own use, so that every time I install a n
 ### Installation.
 
 ```bash
-$ sudo pacman -Sy python postgresql pgadmin4 apache mysql mariadb lollypop code npm firefox intellij-idea-community-edition jre11-openjdk maven neofetch youtube-dl elasticsearch kibana logstash nginx virt-manager qemu vde2 ebtables dnsmasq bridge-utils openbsd-netcat wine lutris steam-manjaro gsmartcontrol smartmontools xterm git snapd tmux ncdu bashtop ranger
+$ sudo pacman -Sy python tk postgresql pgadmin4 apache mysql mariadb lollypop code npm firefox intellij-idea-community-edition jre11-openjdk maven neofetch youtube-dl elasticsearch kibana logstash nginx virt-manager qemu vde2 ebtables dnsmasq bridge-utils openbsd-netcat wine lutris steam-manjaro gsmartcontrol smartmontools xterm git snapd tmux ncdu bashtop ranger
 ```
 
 ### Snap apps Instalation.
@@ -16,7 +16,7 @@ $ sudo snap install --classic heroku && sudo snap install postman
 ### Instaling python dependencies.
 
 ```bash
-$ pip3 install pandas psycopg2 xlrd openpyxl xlsxwriter sqlalchemy python-decouple googleapis-common-protos google-auth-oauthlib google-auth-httplib2 google-ads google-api-core google-api-python-client google-auth
+$ pip3 install selenium python-decouple pyautogui pandas psycopg2 xlrd openpyxl xlsxwriter sqlalchemy python-decouple googleapis-common-protos google-auth-oauthlib google-auth-httplib2 google-ads google-api-core google-api-python-client google-auth
 ```
 
 ### Add Permanent Enviroment Variables.
