@@ -16,7 +16,7 @@ $ sudo snap install --classic heroku && sudo snap install postman
 ### Instaling python dependencies.
 
 ```bash
-$ pip3 install selenium python-decouple pyautogui pandas psycopg2 xlrd openpyxl xlsxwriter sqlalchemy python-decouple googleapis-common-protos google-auth-oauthlib google-auth-httplib2 google-ads google-api-core google-api-python-client google-auth
+$ pip3 install selenium python-decouple pyautogui pandas psycopg2 xlrd openpyxl xlsxwriter sqlalchemy python-decouple googleapis-common-protos google-auth-oauthlib google-auth-httplib2 google-ads google-api-core google-api-python-client google-auth simple-websocket
 ```
 
 ### Add Permanent Enviroment Variables.
@@ -59,9 +59,7 @@ $ exit
 Start PostgreSQL service, enable it to start at every boot and check if nothing is wrong.
 
 ```bash
-$ sudo systemctl start postgresql
-$ sudo systemctl enable postgresql
-$ sudo systemctl status postgresql
+$ sudo systemctl start postgresql && sudo systemctl enable postgresql && sudo systemctl status postgresql
 ```
 
 If the following shows up it's ready to go. Otherwise, go figure out what's wrong.
@@ -112,10 +110,8 @@ And all is done, run pgAdmin4 to set the server up.
 Install pgAdmin4 via pip, if it doesn't install via `.whl`.
 
 ```bash
-$ sudo mkdir /var/lib/pgadmin
-$ sudo mkdir /var/log/pgadmin
-$ sudo chown $USER /var/lib/pgadmin
-$ sudo chown $USER /var/log/pgadmin
+$ sudo mkdir /var/lib/pgadmin && sudo mkdir /var/log/pgadmin
+$ sudo chown $USER /var/lib/pgadmin && sudo chown $USER /var/log/pgadmin
 $ pip3 install pgadmin4
 ```
 
