@@ -37,7 +37,7 @@ export VARIABLE=var_content
 Or 
 
 ```bash
-$ sudo nano /etc/enviroment
+$ sudo nano /etc/environment
 ```
 
 and add:
