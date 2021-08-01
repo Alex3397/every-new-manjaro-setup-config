@@ -1,5 +1,5 @@
 # Every new manjaro setup and config.
-Install and setup configuration for my own use, so that every time I install a new manjaro distro seting up stuff go as fast and smooth as possible.
+Install and setup configuration for my own use, so that every time I install a new manjaro distro setting up stuff go as fast and smooth as possible.
 
 ### Installation.
 
