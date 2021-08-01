@@ -10,6 +10,14 @@ $ sudo pacman -Sy python geckodriver tk postgresql pgadmin4 apache mysql mariadb
 ### Snap apps Instalation.
 
 ```bash
+$ sudo systemctl enable --now snapd.socket
+```
+
+```bash
+$ sudo ln -s /var/lib/snapd/snap /snap
+```
+
+```bash
 $ sudo snap install --classic heroku && sudo snap install postman
 ```
 
