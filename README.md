@@ -60,6 +60,12 @@ and add:
 VARIABLE=var_content
 ```
 
+Database basic URL template:
+
+```bash
+jdbc:postgresql://localhost:5432/database
+```
+
 ### PostgreSQL Service setup.
 
 Sign up as postgres user, initiate database using system locale language, and nothing else.
