@@ -24,7 +24,7 @@ $ sudo ln -s /var/lib/snapd/snap /snap
 ```
 
 ```bash
-$ sudo snap install --classic heroku && sudo snap install postman
+$ sudo snap install --classic heroku && sudo snap install postman && sudo snap install android-studio --classic
 ```
 
 ### Instaling python dependencies.
