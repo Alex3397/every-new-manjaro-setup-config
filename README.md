@@ -45,7 +45,9 @@ $ sudo nano /etc/profile.d/example.sh
 Template:
 
 ```bash
-export VARIABLE=var_content
+export LOCAL_BASE_URL=jdbc:postgresql://localhost:5432/postgres
+export LOCAL_DATABASE_PASS=postgres
+export LOCAL_DATABASE_USER=postgres
 ```
 
 Or 
@@ -57,7 +59,9 @@ $ sudo nano /etc/environment
 and add:
 
 ```bash
-VARIABLE=var_content
+LOCAL_BASE_URL=jdbc:postgresql://localhost:5432/postgres
+LOCAL_DATABASE_PASS=postgres
+LOCAL_DATABASE_USER=postgres
 ```
 
 Database basic URL template:
