@@ -3,8 +3,11 @@ Install and setup configuration for my own use, so that every time I install a n
 
 ### Installation.
 
+```bash$``````bash
+sudo pacman -Sy python geckodriver tk postgresql pgadmin4 apache mysql mariadb lollypop code npm firefox intellij-idea-community-edition jre17-openjdk maven neofetch youtube-dl nginx virt-manager qemu vde2 ebtables dnsmasq bridge-utils openbsd-netcat wine lutris steam-manjaro gsmartcontrol smartmontools xterm git snapd tmux ncdu bashtop ranger github-cli
+```
 ```bash
-$ sudo pacman -Sy python geckodriver tk postgresql pgadmin4 apache mysql mariadb lollypop code npm firefox intellij-idea-community-edition jre11-openjdk maven neofetch youtube-dl elasticsearch kibana logstash nginx virt-manager qemu vde2 ebtables dnsmasq bridge-utils openbsd-netcat wine lutris steam-manjaro gsmartcontrol smartmontools xterm git snapd tmux ncdu bashtop ranger github-cli
+elasticsearch kibana logstash are deprecated
 ```
 
 ### Login with Github CLI
