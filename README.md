@@ -15,27 +15,27 @@ elasticsearch kibana logstash
 ### Login with Github CLI
 
 ```bash
-$ gh auth login
+gh auth login
 ```
 
 ### Snap apps Instalation.
 
 ```bash
-$ sudo systemctl enable --now snapd.socket
+sudo systemctl enable --now snapd.socket
 ```
 
 ```bash
-$ sudo ln -s /var/lib/snapd/snap /snap
+sudo ln -s /var/lib/snapd/snap /snap
 ```
 
 ```bash
-$ sudo snap install --classic heroku && sudo snap install postman && sudo snap install android-studio --classic
+sudo snap install --classic heroku && sudo snap install postman && sudo snap install android-studio --classic
 ```
 
 ### Instaling python dependencies.
 
 ```bash
-$ pip3 install selenium python-decouple pyautogui pandas psycopg2 xlrd openpyxl xlsxwriter sqlalchemy python-decouple googleapis-common-protos google-auth-oauthlib google-auth-httplib2 google-ads google-api-core google-api-python-client google-auth simple-websocket
+pip3 install selenium python-decouple pyautogui pandas psycopg2 xlrd openpyxl xlsxwriter sqlalchemy python-decouple googleapis-common-protos google-auth-oauthlib google-auth-httplib2 google-ads google-api-core google-api-python-client google-auth simple-websocket
 ```
 
 ### Add Permanent Enviroment Variables.
